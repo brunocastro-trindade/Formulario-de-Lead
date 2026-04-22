@@ -47,3 +47,21 @@ function validarTel () {
         'Telefone precsia ter pelo menos 10 digitos'
     );
 }
+
+document.getElementById('nome').addEventListener('blur', validarNome);
+document.getElementById('email').addEventListener('blur', validarEmail);
+document.getElementById('tel').addEventListener('blur', validarTel);
+
+document.getElementById('leadForm').addEventListener
+('submit', function(e){
+    e.preventDefault();
+
+    const nomeOk = validarNome();
+    const emailOk = validarEmail();
+    const telOk = validarTel();
+
+    if (nomeOk && emailOk && telOk) {
+        alert('Lead capturado com sucesso!');
+        this.reset();
+}
+});
