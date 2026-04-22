@@ -19,11 +19,11 @@ function validarCampo(input, condicao, mensagemErro) {
 
 function validarNome() {
     const input = document.getElementById('nome');
-    const valor = input.ariaValueMax.trim();
+    const valor = input.value.trim();
 
     return validarCampo(
         input,
-        valor.length > 3
+        valor.length < 3,
     );
 }
 
@@ -33,7 +33,8 @@ function validarEmail() {
 
     return validarCampo(
         input,
-        REGEX_EMAIL.test(valor),
+        !REGEX_EMAIL.test(valor),
+        'E-mail inválido'
     );
 }
 
@@ -43,8 +44,8 @@ function validarTel () {
 
     return validarCampo(
         input,
-        valor.length >= 10,
-        'Telefone precsia ter pelo menos 10 digitos'
+        valor.length < 10,
+        'Telefone precisa ter pelo menos 10 digitos'
     );
 }
 
@@ -63,5 +64,5 @@ document.getElementById('leadForm').addEventListener
     if (nomeOk && emailOk && telOk) {
         alert('Lead capturado com sucesso!');
         this.reset();
-}
+    }
 });
